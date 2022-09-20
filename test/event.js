@@ -31,6 +31,50 @@ describe('events',()=>{
             });
             
             done();
-})
+}),
+it ('update' , (done) => {
+  let newEvent = {
+    event_name:"event22"
+  }
+  chai.request(server)
+      .post('/graphql')
+      .set('authorization', `Bearer ${login_token}`)
+      .send({
+        'query' : `mutation UpdateEvent($input: updateEvent) {
+          updateEvent(input: $input) {
+            status
+          }
+        }`,
+        'variables' : {
+           'input': newEvent
+         }
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+      });
+      
+      done();
+}),
+it('it should GET all the events', (done) => {
+  chai.request(server)
+      .get('/graphql')
+      .send({
+
+
+        // 'query' : `query GetEventList {
+        //   getEventList {
+        //     status
+        //     data {
+        //       event_name
+        //     }
+        //   }
+        // }';
+
+      })
+      .end((err, res) => {
+            res.should.have.status(200);
+        done();
+      });
+});
 });
 

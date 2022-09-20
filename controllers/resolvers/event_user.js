@@ -36,7 +36,7 @@ Mutation:{
 
       console.log('userExits :>> ', userExits);
       if (userExits) {
-        throw "Already invited";
+        throw 'Already invited';
       }
 
       // console.log("here", ctx.userData.id,event.user_id);

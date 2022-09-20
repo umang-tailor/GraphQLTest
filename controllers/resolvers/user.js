@@ -158,7 +158,7 @@ console.log("start");
         resetKey: resetKey,
       }
     } catch (error) {
-      throw 'error'
+      throw error
     }
   },
 updatePassword : async (parent, args, ctx) => {
@@ -220,7 +220,7 @@ Query: {
       };
       
     } catch (error) {
-      throw `error`
+      throw error
     }
   }
 }

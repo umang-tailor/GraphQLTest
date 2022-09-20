@@ -60,15 +60,16 @@ module.exports={
   },
   Query:{
  getEventList : async (parent,args,ctx) => {
-  console.log("!!!!!!!!!!!!!!!!!!!!!start", ctx.userData.id,);
-    // const { page = 1, limit = 10 } = args.input.query;
+  // console.log("!!!!!!!!!!!!!!!!!!!!!start", ctx.userData.id);
+    const { page = 1, limit = 10 } = args.query;
     try {
+      console.log("!!start");
       let updatedUserData = await user_events.find({
         
           user_id: ctx.userData.id,
         
       });
-      console.log('updateUserData :>> ', updatedUserData);
+      // console.log('updateUserData :>> ', updatedUserData);
       if (!args.input.search_text) {
         let result = await events.find()
                 .limit(limit*1)
@@ -86,7 +87,7 @@ module.exports={
         };
       }
     } catch (error) {
-      throw'error'
+      throw error
     }
   }
   }
